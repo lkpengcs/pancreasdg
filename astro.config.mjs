@@ -2,7 +2,6 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
-import netlify from '@astrojs/netlify';
 import react from "@astrojs/react";
 
 // https://astro.build/config
@@ -11,7 +10,6 @@ export default defineConfig({
   base: '/', 
   output: 'static', // Ensures the build is static
   integrations: [tailwind(), icon(), mdx(), react()],
-  adapter: netlify(),
   markdown: {
     shikiConfig: {
       theme: "github-light"
