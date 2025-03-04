@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: Research Project Page Template
+title: "PancreasDG: Rethink Domain Generalization in MRI Segmentation"
 description: Simple project page template for your research paper, built with Astro and Tailwind CSS
 favicon: favicon.svg
 thumbnail: screenshot.png
@@ -18,8 +18,7 @@ import TwoColumns from "../components/TwoColumns.astro";
 import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
-import outside from "../assets/outside.mp4";
-import transformer from "../assets/transformer.webp";
+import architecture_draft from "../assets/architecture_draft.webp"
 import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
@@ -30,35 +29,34 @@ export const components = {pre: CodeBlock, table: Table}
   title={frontmatter.title}
   authors={[
     {
-      name: "Roman Hauksson",
-      url: "https://roman.technology",
-      institution: "Independent",
-      notes: ["*", "†"],
-    },
-    {
-      name: "Author Two",
-      institution: "Institution Two",
-      notes: ["*", "†"],
-    },
-    {
-      name: "Author Three",
-      institution: "Institution Three",
+      name: "Zheyuan Zhang",
+      institution: "Northwestern University",
       notes: ["†"],
     },
     {
-      name: "Author Four",
-      institution: "Institution Four",
+      name: "Linkai Peng",
+      institution: "Northwestern University",
+      notes: ["†"],
+    },
+    {
+      name: "Wanying Dou",
+      institution: "Northwestern University",
+    },
+    {
+      name: "Ulas Bagci",
+      institution: "Northwestern University",
+      notes: ["*"],
     },
   ]}
-  conference="Conference Name"
+  conference=""
   notes={[
     {
       symbol: "*",
-      text: "author note one",
+      text: "Corresponding Author",
     },
     {
       symbol: "†",
-      text: "author note two",
+      text: "Equal Contribution",
     },
   ]}
   links={[
@@ -69,7 +67,7 @@ export const components = {pre: CodeBlock, table: Table}
     },
     {
       name: "Code",
-      url: "https://github.com/RomanHauksson/academic-project-astro-template",
+      url: "https://github.com/NUBagciLab/nnUNetDG",
       icon: "ri:github-line",
     },
     {
@@ -77,83 +75,22 @@ export const components = {pre: CodeBlock, table: Table}
       url: "",
       icon: "academicons:arxiv",
     },
-    {
-      name: "Bluesky",
-      url: "",
-      icon: "ri:bluesky-line"
-    }
   ]}
   />
-
-<Video source={outside} />
 
 <HighlightedSection>
 
 ## Abstract
 
-This is a live demo for a template you can use to create a simple project page for your research paper. See the code for the template and instructions on how to use it yourself [here](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind CSS](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+Most medical segmentation statistical learning algorithms operate under an oversimplified assumption: training and testing data are independent and identically distributed. This assumption often fails in real-world medical imaging scenarios due to variations in acquisition devices, imaging protocols, and even patient characteristics. Particularly for MRI imaging, many different types of imaging sequences play crucial roles in clinical MRI imaging, yet the impact of domain shifts between these sequences has remained unexplored. Such domain shifts pose significant challenges to model performance, which is however a more realistic clinical scenario given that the vast diversity of imaging sequences makes it impractical to enumerate explicitly. To fairly evaluate the challenging domain shift issues, we propose one novel challenging PancreasDG MRI segmentation task consisting of domain shift across different data centers and different acquisition time: from venous phase to out-of-phase. This more realistic and challenging cross-phase setting reveals many significant differences which has never been investigated before in terms of domain shift influence compared with the widely used cross-center setting. To address the challenge of domain shift issues, we propose a large-scale pre-trained model that encompasses a diverse range of anatomical categories as a robust starting point. To further enhance performance in tasks constrained by limited annotated data, we propose an Exponential Moving Average (EMA)-based teacher model to guide semisupervised learning on large-scale unlabeled MRI data.  Extensive experiments validate the superior effectiveness of robust pretraining to overcome challenging domain shifts where most robustness segmentation methods fail. All data and code are publicly available [here](https://github.com/NUBagciLab/nnUNetDG).
 
 </HighlightedSection>
 
 ## Figures
 
-Use the figure component to display images, videos, equations, or any other element, with an optional caption.
-
 <Figure
-    caption="Diagram of the transformer deep learning architecture."
+    caption="An overview of our proposed method. We adopt the EMA Network structure for the semi-supervised training for the unlabeled cases. To avoid the segmentation collapse, we add the graph segmentation result as the regularization such that we can further extend the model's performance on the general segmentation tasks."
   >
-    <Image source={transformer} altText="Diagram of the transformer deep learning architecture." />
+    <Image source={architecture_draft} altText="" />
 </Figure>
 
-## Two columns
-
-Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
-
-<TwoColumns>
-  <Figure slot="left" caption="Take a look at this YouTube video.">
-    <YouTubeVideo videoId="wjZofJX0v4M" />
-  </Figure>
-  <Figure slot="right" caption="Now look at this Gaussian Splat, rendered with a React component.">
-    <Splat client:idle />
-  </Figure>
-</TwoColumns>
-
-## Heading levels
-
-Use headings to divide your content into sections.
-
-### Heading 3
-
-Go down a level to heading 3...
-
-#### Heading 4
-
-...and down again to heading 4.
-
-## LaTeX
-
-You can also add LaTeX formulas, rendered during the build process using [KaTeX](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: <LaTeX inline formula="a^2 + b^2 = c^2" />. Or, you can write them as a block:
-
-<LaTeX formula="\int_a^b f(x) dx" />
-
-## Tables
-
-You can add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
-
-| Model | Accuracy | F1 score | Training time (hours) |
-| :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
-
-## BibTeX citation
-
-```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
-  title = "Academic Project Page Template",
-  year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
-}
-```
