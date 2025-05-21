@@ -44,7 +44,7 @@ export const components = {pre: CodeBlock, table: Table}
     },
     {
       name: "Code",
-      url: "",
+      url: "https://github.com/NUBagciLab/nnUNetDG",
       icon: "ri:github-line",
     },
     {
@@ -52,6 +52,11 @@ export const components = {pre: CodeBlock, table: Table}
       url: "",
       icon: "academicons:arxiv",
     },
+    {
+      name: "Dataset",
+      url: "https://huggingface.co/datasets/ppplllkkk/PancreasDG",
+      icon: "simple-icons:huggingface"
+    }
   ]}
   />
 
@@ -59,7 +64,7 @@ export const components = {pre: CodeBlock, table: Table}
 
 ## Abstract
 
-Most medical segmentation statistical learning algorithms operate under an oversimplified assumption: training and testing data are independent and identically distributed. This assumption often fails in real-world medical imaging scenarios due to variations in acquisition devices, imaging protocols, and even patient characteristics. Particularly for MRI imaging, many different types of imaging sequences play crucial roles in clinical MRI imaging, yet the impact of domain shifts between these sequences has remained unexplored. Such domain shifts pose significant challenges to model performance, which is however a more realistic clinical scenario given that the vast diversity of imaging sequences makes it impractical to enumerate explicitly. To fairly evaluate the challenging domain shift issues, we propose one novel challenging PancreasDG MRI segmentation task consisting of domain shift across different data centers and different acquisition time: from venous phase to out-of-phase. This more realistic and challenging cross-phase setting reveals many significant differences which has never been investigated before in terms of domain shift influence compared with the widely used cross-center setting. To address the challenge of domain shift issues, we propose a large-scale pre-trained model that encompasses a diverse range of anatomical categories as a robust starting point. To further enhance performance in tasks constrained by limited annotated data, we propose an Exponential Moving Average (EMA)-based teacher model to guide semisupervised learning on large-scale unlabeled MRI data.  Extensive experiments validate the superior effectiveness of robust pretraining to overcome challenging domain shifts where most robustness segmentation methods fail. All data and code are publicly available [here](https://github.com/NUBagciLab/nnUNetDG).
+Clinical magnetic‑resonance (MR) protocols generate dozens of T1 and T2 sequences whose visual appearance differs more than the acquisition sites that produce them. Existing domain‑generalization benchmarks focus almost exclusively on cross‑center shifts and overlook this dominant source of variability. Pancreas segmentation remains a major challenge in abdominal imaging: the gland is small, irregularly shaped, surrounded by stomach, duodenum and visceral fat, and often suffers from low T1 contrast. State‑of‑the‑art deep networks that already achieve >90% Dice on the liver or kidneys still miss 20–30% tissue on the pancreas. In addition, the organ is systematically under‑represented in public cross‑domain benchmarks—even though accurate pancreas delineation is critical for early cancer detection, surgical planning and diabetes research. To close this gap, we present PancreasDG, a large-scale multi-center 3D MRI pancreas segmentation dataset specifically designed to investigate domain generalization in medical imaging. The dataset comprises 563 MRI scans from six institutions, spanning both venous phase and out-of-phase sequences, enabling systematic study of both cross-center and cross-sequence variations with pixel‑accurate pancreas masks created by a double‑blind, two‑pass protocol. Through comprehensive analysis of this dataset, we reveal three critical insights: (i) limited sampling introduces significant variance that may be mistaken for distribution shifts, (ii) cross-center performance correlates with source domain performance for identical sequences, and (iii) cross-sequence shifts present fundamentally different generalization challenges requiring specialized solutions. We further propose a semi-supervised learning approach for cross-sequence generalization that leverages anatomical invariances, significantly outperforming state-of-the-art domain generalization techniques with +61.63% Dice score improvements (from 43.55% to 70.39%) and +87.00% (from 35.62% to 66.61%) on two independent test centers for cross-sequence segmentation. PancreasDG establishes a new benchmark for domain generalization in medical imaging with implications beyond medical applications. Dataset, code, and models will be available after the peer-review process.
 
 </HighlightedSection>
 
