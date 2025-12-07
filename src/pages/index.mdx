@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: "PancreasDG: Rethink Domain Generalization in MRI Segmentation"
+title: "CrossPan: A Comprehensive Benchmark for Cross-Sequence Pancreas MRI Segmentation and Generalization"
 description: Simple project page template for your research paper, built with Astro and Tailwind CSS
 favicon: favicon.svg
 thumbnail: screenshot.png
@@ -29,12 +29,68 @@ export const components = {pre: CodeBlock, table: Table}
   title={frontmatter.title}
   authors={[
     {
-      name: "Anonymous Author",
-      institution: "Anonymous Institution",
+      name: "Linkai Peng",
+      institution: "Northwestern University",
+      notes: ["†"],
     },
+    {
+      name: "Cuiling Sun",
+      institution: "Northwestern University",
+      notes: ["†"],
+    },
+        {
+      name: "Zheyuan Zhang",
+      institution: "Northwestern University",
+      notes: ["†"],
+    },
+        {
+      name: "Wanying Dou",
+      institution: "Northwestern University",
+    },
+        {
+      name: "Halil Ertugrul Aktas",
+      institution: "Northwestern University",
+    },
+        {
+      name: "Andrea M Bejar",
+      institution: "Northwestern University",
+    },
+        {
+      name: "Elif Keles",
+      institution: "Northwestern University",
+    },
+        {
+      name: "Tamas Gonda",
+      institution: " New York University",
+    },
+        {
+      name: "Michael B Wallace",
+      institution: " Mayo Clinic in Florida",
+    },
+        {
+      name: "Zongwei Zhou",
+      institution: "Johns Hopkins University",
+    },
+        {
+      name: "Gorkem Durak",
+      institution: "Northwestern University",
+    },
+        {
+      name: "Rajesh N Keswani",
+      institution: "Northwestern University",
+    },
+        {
+      name: "Ulas Bagci",
+      institution: "Northwestern University",
+    },
+
   ]}
-  conference=""
+  conference="MIDL 2026"
   notes={[
+    {
+      symbol: "†",
+      text: "Equal Contribution",
+    },
   ]}
   links={[
     {
@@ -54,7 +110,7 @@ export const components = {pre: CodeBlock, table: Table}
     },
     {
       name: "Dataset",
-      url: "https://huggingface.co/datasets/ppplllkkk/PancreasDG",
+      url: "https://huggingface.co/datasets/linkai-peng/CrossPan",
       icon: "simple-icons:huggingface"
     }
   ]}
@@ -64,15 +120,7 @@ export const components = {pre: CodeBlock, table: Table}
 
 ## Abstract
 
-Clinical magnetic‑resonance (MR) protocols generate dozens of T1 and T2 sequences whose visual appearance differs more than the acquisition sites that produce them. Existing domain‑generalization benchmarks focus almost exclusively on cross‑center shifts and overlook this dominant source of variability. Pancreas segmentation remains a major challenge in abdominal imaging: the gland is small, irregularly shaped, surrounded by stomach, duodenum and visceral fat, and often suffers from low T1 contrast. State‑of‑the‑art deep networks that already achieve >90% Dice on the liver or kidneys still miss 20–30% tissue on the pancreas. In addition, the organ is systematically under‑represented in public cross‑domain benchmarks—even though accurate pancreas delineation is critical for early cancer detection, surgical planning and diabetes research. To close this gap, we present PancreasDG, a large-scale multi-center 3D MRI pancreas segmentation dataset specifically designed to investigate domain generalization in medical imaging. The dataset comprises 563 MRI scans from six institutions, spanning both venous phase and out-of-phase sequences, enabling systematic study of both cross-center and cross-sequence variations with pixel‑accurate pancreas masks created by a double‑blind, two‑pass protocol. Through comprehensive analysis of this dataset, we reveal three critical insights: (i) limited sampling introduces significant variance that may be mistaken for distribution shifts, (ii) cross-center performance correlates with source domain performance for identical sequences, and (iii) cross-sequence shifts present fundamentally different generalization challenges requiring specialized solutions. We further propose a semi-supervised learning approach for cross-sequence generalization that leverages anatomical invariances, significantly outperforming state-of-the-art domain generalization techniques with +61.63% Dice score improvements (from 43.55% to 70.39%) and +87.00% (from 35.62% to 66.61%) on two independent test centers for cross-sequence segmentation. PancreasDG establishes a new benchmark for domain generalization in medical imaging with implications beyond medical applications. Dataset, code, and models will be available after the peer-review process.
+Pancreas MRI segmentation remains challenging due to heterogeneous acquisition protocols and the limited availability of annotated multi-sequence data. While prior studies have examined cross-center robustness, the impact of variations across MRI sequences has received far less attention. We present CrossPan, a comprehensive empirical benchmark for evaluating segmentation robustness under heterogeneous abdominal MRI sequences. The benchmark comprises 1386 3D scans from eight institutions across three routinely acquired sequences (T1-weighted, T2-weighted, and Out-of-Phase). Across five tasks, we find that: (i) cross-sequence shifts constitute a substantially more severe challenge than cross-center variability; (ii) state-of-the-art DG methods show limited effectiveness in bridging the gap, while zero-shot foundation models exhibit heterogeneous robustness; and (iii) semi-supervised learning offers moderate gains at mid-range label ratios but remains unstable under extreme scarcity and exhibits strong sequence dependence. These results highlight the fundamental difficulty of cross-sequence generalization in abdominal MRI and position CrossPan as a rigorous platform for advancing robust and clinically reliable pancreas segmentation.
 
 </HighlightedSection>
-
-## Figures
-
-<Figure
-    caption="An overview of our proposed method. We adopt the EMA Network structure for the semi-supervised training for the unlabeled cases. To avoid the segmentation collapse, we add the graph segmentation result as the regularization such that we can further extend the model's performance on the general segmentation tasks."
-  >
-    <Image source={architecture_draft} altText="" />
-</Figure>
 
